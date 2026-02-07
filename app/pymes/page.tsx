@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ASSETS } from "@/lib/assets";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Package, Truck, FileText } from "lucide-react";
@@ -18,7 +19,7 @@ export default function PymesPage() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo-fenix.png"
+              src={ASSETS.logo.nav}
               alt="Fenix Autodev"
               width={140}
               height={44}
@@ -28,11 +29,11 @@ export default function PymesPage() {
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="text-sm text-muted-foreground hover:text-[#FF8C00] transition-colors"
+              className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
             >
               Inicio
             </Link>
-            <Button asChild size="lg" className="bg-[#FF8C00] hover:bg-[#FF8C00]/90">
+            <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726]">
               <a href={whatsappPymes} target="_blank" rel="noopener noreferrer">
                 Ver Demo para PyMEs/Depósitos
               </a>
@@ -50,7 +51,7 @@ export default function PymesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[#FF8C00] text-sm font-medium uppercase tracking-wider mb-4">
+            <p className="text-[#F57C00] text-sm font-medium uppercase tracking-wider mb-4">
               Control y Rentabilidad
             </p>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -60,7 +61,7 @@ export default function PymesPage() {
               Eliminá las planillas de cálculo y los remitos en papel. Sistema de
               Gestión de Stock, Pedidos y Hojas de Ruta en Tiempo Real.
             </p>
-            <Button asChild size="lg" className="bg-[#FF8C00] hover:bg-[#FF8C00]/90 text-white">
+            <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726] text-white">
               <a href={whatsappPymes} target="_blank" rel="noopener noreferrer">
                 Ver Demo para PyMEs/Depósitos
               </a>
@@ -113,9 +114,9 @@ export default function PymesPage() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Card className="bg-card border-border hover:border-[#FF8C00]/50 transition-colors h-full">
+                  <Card className="bg-card border-border hover:border-[#F57C00]/50 transition-colors h-full">
                     <CardHeader>
-                      <item.icon className="w-14 h-14 text-[#FF8C00] mb-4" />
+                      <item.icon className="w-14 h-14 text-[#F57C00] mb-4" />
                       <CardTitle className="text-foreground text-xl">
                         {item.title}
                       </CardTitle>
@@ -133,7 +134,7 @@ export default function PymesPage() {
         {/* Cierre de Venta */}
         <section
           id="cta"
-          className="py-20 bg-gradient-to-b from-black/90 to-[#020817] border-t-2 border-[#FF8C00]/40"
+          className="py-20 bg-gradient-to-b from-black/90 to-[#020817] border-t-2 border-[#F57C00]/40"
         >
           <div className="container mx-auto px-4 text-center">
             <motion.div
@@ -146,7 +147,7 @@ export default function PymesPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-white">
                 ¿Tu depósito es un caos de papeles? Ordenalo hoy mismo.
               </h2>
-              <Button asChild size="lg" className="bg-[#FF8C00] hover:bg-[#FF8C00]/90 text-white text-lg px-10 py-6">
+              <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726] text-white text-lg px-10 py-6">
                 <a href={whatsappPymes} target="_blank" rel="noopener noreferrer">
                   Solicitar Auditoría de Logística
                 </a>
@@ -160,13 +161,13 @@ export default function PymesPage() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center gap-6">
               <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-                <Link href="/" className="hover:text-[#FF8C00] transition-colors">
+                <Link href="/" className="hover:text-[#F57C00] transition-colors">
                   Inicio
                 </Link>
-                <Link href="/#servicios" className="hover:text-[#FF8C00] transition-colors">
+                <Link href="/#servicios" className="hover:text-[#F57C00] transition-colors">
                   Servicios
                 </Link>
-                <Link href="/#contacto" className="hover:text-[#FF8C00] transition-colors">
+                <Link href="/#contacto" className="hover:text-[#F57C00] transition-colors">
                   Contacto
                 </Link>
               </div>
@@ -231,10 +232,10 @@ export default function PymesPage() {
                 </a>
               </div>
               <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
-                <Link href="/">
-                  <Image
-                    src="/logo-fenix.png"
-                    alt="Fenix Autodev"
+              <Link href="/">
+                <Image
+                  src={ASSETS.logo.footer}
+                  alt="Fenix Autodev"
                     width={120}
                     height={38}
                     className="h-8 w-auto object-contain"

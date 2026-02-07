@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Stethoscope, Truck, ShoppingCart } from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ASSETS, USO_IMAGENES } from "@/lib/assets";
 
 const PROJECTS = [
   {
@@ -13,6 +15,7 @@ const PROJECTS = [
     href: "/salud",
     tag: "Salud & Clínicas",
     icon: Stethoscope,
+    image: ASSETS.proyectos.salud,
   },
   {
     title: "Logística & Stock en Tiempo Real",
@@ -21,6 +24,7 @@ const PROJECTS = [
     href: "/pymes",
     tag: "Industria & PyMEs",
     icon: Truck,
+    image: ASSETS.proyectos.pymes,
   },
   {
     title: "E-Commerce Mayorista",
@@ -30,6 +34,7 @@ const PROJECTS = [
     tag: "Comercio Electrónico",
     icon: ShoppingCart,
     external: true,
+    image: ASSETS.proyectos.ecommerce,
   },
 ];
 
@@ -65,15 +70,33 @@ export function FeaturedProjects() {
                 rel={project.external ? "noopener noreferrer" : undefined}
                 className="block h-full"
               >
-                <Card className="h-full bg-card border-border hover:border-[#FF8C00]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,140,0,0.08)] group">
-                  <CardHeader className="space-y-4">
-                    <span className="text-xs font-medium uppercase tracking-wider text-[#FF8C00]">
-                      {project.tag}
-                    </span>
-                    <div className="w-14 h-14 rounded-xl bg-[#FF8C00]/10 flex items-center justify-center group-hover:bg-[#FF8C00]/20 transition-colors">
-                      <project.icon className="h-7 w-7 text-[#FF8C00]" />
+                <Card className="h-full bg-card border-border hover:border-[#F57C00]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,124,0,0.08)] group overflow-hidden">
+                  {USO_IMAGENES.proyectos && (
+                    <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <span className="absolute top-3 left-3 text-xs font-medium uppercase tracking-wider text-[#F57C00] bg-[#020817]/80 px-2 py-1 rounded">
+                        {project.tag}
+                      </span>
                     </div>
-                    <CardTitle className="text-foreground text-xl group-hover:text-[#FF8C00] transition-colors">
+                  )}
+                  <CardHeader className="space-y-4">
+                    {!USO_IMAGENES.proyectos && (
+                      <>
+                        <span className="text-xs font-medium uppercase tracking-wider text-[#F57C00]">
+                          {project.tag}
+                        </span>
+                        <div className="w-14 h-14 rounded-xl bg-[#F57C00]/10 flex items-center justify-center group-hover:bg-[#F57C00]/20 transition-colors">
+                          <project.icon className="h-7 w-7 text-[#F57C00]" />
+                        </div>
+                      </>
+                    )}
+                    <CardTitle className="text-foreground text-xl group-hover:text-[#F57C00] transition-colors">
                       {project.title}
                     </CardTitle>
                     <CardDescription className="text-slate-300 leading-relaxed">
