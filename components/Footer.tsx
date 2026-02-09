@@ -16,8 +16,20 @@ const sectionTitle =
 const linkBase =
   "text-sm text-slate-400 hover:text-[#F57C00] transition-colors duration-200";
 
-const contactItems = [
-  { label: "fenixautodev@gmail.com", href: `mailto:${EMAIL}`, icon: Mail },
+interface ContactItem {
+  label: string;
+  href: string;
+  icon: typeof Mail;
+  external: boolean;
+}
+
+const contactItems: ContactItem[] = [
+  {
+    label: "fenixautodev@gmail.com",
+    href: `mailto:${EMAIL}`,
+    icon: Mail,
+    external: false,
+  },
   {
     label: "+54 9 221 690-2614",
     href: WHATSAPP_URL,
@@ -36,7 +48,7 @@ const contactItems = [
     icon: Instagram,
     external: true,
   },
-] as const;
+];
 
 export function Footer() {
   return (
