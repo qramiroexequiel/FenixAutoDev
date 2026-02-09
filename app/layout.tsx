@@ -2,39 +2,96 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter } from "next/font/google";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
+
+const title =
+  "Fenix AutoDev | Sistemas de Alta Precisión y Automatización Inteligente";
+const description =
+  "Lideramos la transformación digital de empresas exigentes. Expertos en Automatización con IA, Arquitecturas Elásticas y Migración de Sistemas Críticos. Soluciones robustas con Factura A en Argentina.";
+const keywords = [
+  "Automatización",
+  "Inteligencia Artificial",
+  "Software a medida",
+  "La Plata",
+  "Argentina",
+  "Sistemas PyMEs",
+  "Eficiencia Operativa",
+  "Factura A",
+];
+const ogImage = `${SITE_URL}/og-image.png`;
 
 const schemaOrg = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Fénix AutoDev",
-  image: "https://fenixautodev.vercel.app/icon.svg",
-  description:
-    "Agencia de Automatización y Desarrollo de Software en La Plata. Eliminamos el trabajo manual con Python y Next.js.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "La Plata Centro",
-    addressLocality: "La Plata",
-    addressRegion: "Buenos Aires",
-    postalCode: "1900",
-    addressCountry: "AR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "-34.9214",
-    longitude: "-57.9545",
-  },
-  url: "https://fenixautodev.vercel.app",
-  telephone: "+5492216902614",
-  openingHoursSpecification: [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo-fenix.png`,
+      founder: [
+        {
+          "@type": "Person",
+          name: "Ramiro Quevedo",
+          jobTitle: "CTO & Lead Developer",
+        },
+        {
+          "@type": "Person",
+          name: "José",
+          jobTitle: "Consultor Especialista en Salud",
+        },
+        {
+          "@type": "Person",
+          name: "Hernán",
+          jobTitle: "Operaciones & Logística",
+        },
+      ],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#professionalservice`,
+      name: SITE_NAME,
+      description,
+      url: SITE_URL,
+      image: ogImage,
+      logo: `${SITE_URL}/logo-fenix.png`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "La Plata",
+        addressRegion: "Buenos Aires",
+        addressCountry: "AR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "-34.9214",
+        longitude: "-57.9545",
+      },
+      telephone: "+5492216902614",
+      sameAs: [
+        "https://instagram.com/fenixautodev",
+        "https://github.com/FenixAutoDev",
+      ],
+      areaServed: {
+        "@type": "Country",
+        name: "Argentina",
+      },
+      serviceType: [
+        "Desarrollo de Software",
+        "Automatización",
+        "Software para Clínicas",
+        "Software para PyMEs",
+      ],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
     },
   ],
-  priceRange: "$$",
 };
 
 const inter = Inter({
@@ -42,24 +99,49 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fénix AutoDev | Automatización y Software a Medida",
-  description:
-    "Ayudamos a empresas y profesionales a eliminar el trabajo manual, gestionar clientes y escalar con tecnología. Desarrollo Web, Apps y Bots con IA.",
-  keywords: [
-    "Desarrollo Web",
-    "Software a Medida",
-    "Automatización",
-    "Python",
-    "Next.js",
-    "Agencia Digital",
-    "Argentina",
-  ],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: title,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description,
+  keywords,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
   openGraph: {
-    title: "Fénix AutoDev | Automatización y Software a Medida",
-    description:
-      "Transformamos tu negocio con tecnología. Eliminá planillas de cálculo y modernizá tu gestión.",
     type: "website",
     locale: "es_AR",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title,
+    description,
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} - Sistemas de Alta Precisión y Automatización Inteligente`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
   },
 };
 

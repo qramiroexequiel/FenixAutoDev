@@ -22,7 +22,7 @@ function TechItem({
     <div className="flex flex-col items-center gap-1 shrink-0 px-8 group cursor-default">
       <img
         src={src}
-        alt={name}
+        alt={`${name} - Tecnología de automatización y software a medida Fénix AutoDev`}
         className="h-8 w-8 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:brightness-150"
         width={32}
         height={32}

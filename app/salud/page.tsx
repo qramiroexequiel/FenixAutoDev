@@ -20,7 +20,7 @@ export default function SaludPage() {
           <Link href="/" className="flex items-center gap-2">
             <Image
               src={ASSETS.logo.nav}
-              alt="Fenix Autodev"
+              alt="Fénix AutoDev - Software a medida para clínicas y médicos"
               width={140}
               height={44}
               className="h-10 w-auto object-contain"
@@ -32,6 +32,18 @@ export default function SaludPage() {
               className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
             >
               Inicio
+            </Link>
+            <Link
+              href="/#servicios"
+              className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
+            >
+              Servicios
+            </Link>
+            <Link
+              href="/pymes"
+              className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
+            >
+              Software PyMEs
             </Link>
             <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726]">
               <a
@@ -176,8 +188,11 @@ export default function SaludPage() {
                 <Link href="/#servicios" className="hover:text-[#F57C00] transition-colors">
                   Servicios
                 </Link>
-                <Link href="/#contacto" className="hover:text-[#F57C00] transition-colors">
-                  Contacto
+                <Link href="/#faq" className="hover:text-[#F57C00] transition-colors">
+                  FAQ
+                </Link>
+                <Link href="/pymes" className="hover:text-[#F57C00] transition-colors">
+                  Software para PyMEs
                 </Link>
               </div>
               <div className="flex flex-wrap justify-center gap-6">
@@ -244,7 +259,7 @@ export default function SaludPage() {
               <Link href="/">
                 <Image
                   src={ASSETS.logo.footer}
-                  alt="Fenix Autodev"
+                  alt="Fénix AutoDev - Automatización para consultorios y salud"
                     width={120}
                     height={38}
                     className="h-8 w-auto object-contain"

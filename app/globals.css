@@ -4,6 +4,36 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* 96px - altura del navbar desktop */
+}
+
+@keyframes aura-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hero-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #020617 25%,
+    #0a0f1a 50%,
+    #020617 75%,
+    #000308 100%
+  );
+  background-size: 400% 400%;
+  animation: hero-gradient 15s ease infinite;
+}
+
+@layer utilities {
+  .animate-aura-rotate {
+    animation: aura-rotate 4s linear infinite;
+  }
 }
 
 @layer base {

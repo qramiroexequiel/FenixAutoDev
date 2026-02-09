@@ -25,8 +25,8 @@ export const ASSETS = {
     ecommerce: "/proyectos/proyecto-ecommerce.webp",
   },
   equipo: {
-    ramiro: "/equipo/equipo-ramiro.webp",
-    jose: "/equipo/equipo-jose.webp",
+    ramiro: "/foto perfil ramiro.jpeg",
+    jose: "/foto perfil jose .jpeg",
     hernan: "/equipo/equipo-hernan.webp",
   },
   og: "/og/og-image.jpg",

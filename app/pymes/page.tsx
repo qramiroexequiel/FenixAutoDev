@@ -20,7 +20,7 @@ export default function PymesPage() {
           <Link href="/" className="flex items-center gap-2">
             <Image
               src={ASSETS.logo.nav}
-              alt="Fenix Autodev"
+              alt="Fénix AutoDev - Software a medida para PyMEs y logística"
               width={140}
               height={44}
               className="h-10 w-auto object-contain"
@@ -32,6 +32,18 @@ export default function PymesPage() {
               className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
             >
               Inicio
+            </Link>
+            <Link
+              href="/#servicios"
+              className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
+            >
+              Servicios
+            </Link>
+            <Link
+              href="/salud"
+              className="text-sm text-muted-foreground hover:text-[#F57C00] transition-colors"
+            >
+              Software Clínicas
             </Link>
             <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726]">
               <a href={whatsappPymes} target="_blank" rel="noopener noreferrer">
@@ -167,8 +179,11 @@ export default function PymesPage() {
                 <Link href="/#servicios" className="hover:text-[#F57C00] transition-colors">
                   Servicios
                 </Link>
-                <Link href="/#contacto" className="hover:text-[#F57C00] transition-colors">
-                  Contacto
+                <Link href="/#faq" className="hover:text-[#F57C00] transition-colors">
+                  FAQ
+                </Link>
+                <Link href="/salud" className="hover:text-[#F57C00] transition-colors">
+                  Software para Clínicas
                 </Link>
               </div>
               <div className="flex flex-wrap justify-center gap-6">
@@ -235,7 +250,7 @@ export default function PymesPage() {
               <Link href="/">
                 <Image
                   src={ASSETS.logo.footer}
-                  alt="Fenix Autodev"
+                  alt="Fénix AutoDev - Automatización para depósitos y PyMEs"
                     width={120}
                     height={38}
                     className="h-8 w-auto object-contain"

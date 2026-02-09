@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -8,35 +7,33 @@ import {
   Search,
   Rocket,
   Zap,
-  RefreshCw,
-  ShieldCheck,
-  Eye,
-  Target,
+  BarChart3,
   Monitor,
   ScanSearch,
   Plug,
-  BarChart3,
   Server,
   Database,
+  SearchCode,
+  RefreshCcw,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Navbar } from "@/components/Navbar";
+import { HeroSection } from "@/components/HeroSection";
+import { AuraCard } from "@/components/AuraCard";
 import { TechTicker } from "@/components/TechTicker";
+import { FaqSection } from "@/components/FaqSection";
+import { FAQ_ITEMS } from "@/lib/faq-data";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { TeamSection } from "@/components/TeamSection";
-
-import { ASSETS } from "@/lib/assets";
+import { ImpactSection } from "@/components/ImpactSection";
+import { ContactForm } from "@/components/ContactForm";
+import { Footer } from "@/components/Footer";
 
 const WHATSAPP_URL =
   "https://wa.me/5492216902614?text=Hola%20Fenix%20AutoDev,%20quisiera%20consultar%20por%20sus%20servicios.";
@@ -44,129 +41,34 @@ const WHATSAPP_URL =
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#020817] border-b border-border">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={ASSETS.logo.nav}
-              alt="Fenix Autodev"
-              width={120}
-              height={40}
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
-          <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726]">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              Agendar Auditoría
-            </a>
-          </Button>
-        </div>
-      </nav>
+      <Navbar />
 
-      <section className="relative mt-16 w-full overflow-hidden">
-        <div className="relative w-full aspect-video min-h-[280px] md:min-h-[400px] bg-[#020817]">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-contain"
-          >
-            <source src={ASSETS.hero.video} type="video/mp4" />
-          </video>
-        </div>
-        <motion.div
-          className="container mx-auto px-4 pt-16 pb-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Tu Negocio en Piloto Automático.
-          </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8">
-            Ayudamos a PyMEs, Clínicas y Profesionales a eliminar el trabajo
-            manual y duplicar su facturación con Software a Medida e Inteligencia
-            Artificial.
-          </p>
-          <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726] text-white">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              Agendar Consultoría Gratuita
-            </a>
-          </Button>
-        </motion.div>
-      </section>
+      <main className="pt-20 md:pt-24">
+      <HeroSection />
 
       <TechTicker />
 
       <FeaturedProjects />
 
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              El impacto de trabajar con Fenix Autodev
-            </h2>
-          </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Menos trabajo manual",
-                description: "Automatización que elimina lo repetitivo.",
-                icon: RefreshCw,
-              },
-              {
-                title: "Menos errores",
-                description: "Eliminamos el factor humano en procesos críticos.",
-                icon: ShieldCheck,
-              },
-              {
-                title: "Mejor visibilidad",
-                description: "Control total de tu operación.",
-                icon: Eye,
-              },
-              {
-                title: "Sistemas que se usan",
-                description: "Software diseñado para la realidad de tu negocio.",
-                icon: Target,
-              },
-            ].map((benefit, i) => (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="bg-card border-border hover:border-primary/50 transition-colors h-full">
-                  <CardHeader>
-                    <benefit.icon className="h-10 w-10 text-primary mb-2" />
-                    <CardTitle className="text-foreground text-lg">
-                      {benefit.title}
-                    </CardTitle>
-                    <CardDescription>{benefit.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ImpactSection />
 
-      <section id="servicios" className="py-24 bg-card/30 border-t border-border">
-        <div className="container mx-auto px-4">
+      <section id="servicios" className="relative py-24 bg-card/30 border-t border-border overflow-hidden" aria-labelledby="servicios-heading">
+        {/* Spotlight - luz naranja tenue de fondo */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] pointer-events-none opacity-[0.08]"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(245,124,0,0.4) 0%, transparent 70%)",
+          }}
+          aria-hidden
+        />
+        <div className="container relative mx-auto px-4">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="servicios-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Servicios que diseñamos
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -174,73 +76,80 @@ export default function Home() {
               Automatización que escala.
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Webs que Venden 24/7",
                 description:
-                  "No es solo diseño. Es una sucursal digital que capta clientes mientras dormís.",
+                  "Tu sucursal digital que capta clientes mientras dormís.",
                 icon: Monitor,
               },
               {
                 title: "Adiós al Caos de Excel",
                 description:
-                  "Centralizá tus datos. Stock, ventas y clientes en un solo lugar, accesible desde tu celular.",
+                  "Stock, ventas y clientes en un solo lugar. Accesible desde tu celular.",
                 icon: Database,
               },
               {
                 title: "Bots que Trabajan por Vos",
                 description:
-                  "Respondé consultas, agendá turnos y facturá automáticamente con IA.",
+                  "IA que responde consultas, agenda turnos y factura automáticamente.",
                 icon: Zap,
               },
               {
                 title: "Web Scraping",
-                description: "Recolección de datos de webs y APIs.",
+                description:
+                  "Datos de webs y APIs listos para tomar decisiones.",
                 icon: ScanSearch,
               },
               {
-                title: "APIs REST e Integraciones",
+                title: "APIs e Integraciones",
                 description:
-                  "Conectamos tus sistemas actuales con apps modernas.",
+                  "Conectamos tus sistemas con apps modernas. Sin fricciones.",
                 icon: Plug,
               },
               {
                 title: "Tableros y Reportes",
                 description:
-                  "Dashboards en vivo y reportes automáticos (PDF/CSV).",
+                  "Dashboards en vivo y reportes automáticos. Control total.",
                 icon: BarChart3,
               },
               {
                 title: "Infraestructura",
                 description:
-                  "Despliegue seguro, autenticación y roles de usuario.",
+                  "Despliegue seguro, autenticación y roles. Listo para escalar.",
                 icon: Server,
               },
+              {
+                title: "Auditoría de Sistemas",
+                description:
+                  "Revisamos y optimizamos lo que tenés. Más velocidad, menos errores.",
+                icon: SearchCode,
+              },
+              {
+                title: "Soporte & Evolución",
+                description:
+                  "Tu sistema crece con tu negocio. Acompañamiento continuo.",
+                icon: RefreshCcw,
+              },
             ].map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="bg-card border-border hover:border-primary/50 transition-colors h-full">
-                  <CardHeader>
-                    <service.icon className="w-16 h-16 text-[#F57C00] mb-4 drop-shadow-[0_0_8px_rgba(245,124,0,0.6)]" />
-                    <CardTitle className="text-foreground">
+              <AuraCard key={service.title} delay={i * 0.1}>
+                <Card className="bg-transparent border-0 shadow-none h-full min-h-[200px]">
+                  <CardHeader className="transition-colors duration-500 h-full">
+                    <service.icon className="w-14 h-14 text-[#F57C00] mb-4 drop-shadow-[0_0_12px_rgba(245,124,0,0.5)]" />
+                    <CardTitle className="text-foreground text-xl font-bold">
                       {service.title}
                     </CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
+                    <CardDescription className="text-slate-400">{service.description}</CardDescription>
                   </CardHeader>
                 </Card>
-              </motion.div>
+              </AuraCard>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#020817] border-t border-border">
+      <section className="py-24 bg-[#020817] border-t border-border" aria-labelledby="metodologia-heading">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -248,7 +157,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="metodologia-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Cómo convertimos tu idea en software
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
@@ -307,7 +216,7 @@ export default function Home() {
 
       <TeamSection />
 
-      <section id="faq" className="py-24 border-t border-border">
+      <section id="contacto" className="py-24 bg-card/30 border-t border-border" aria-labelledby="contacto-heading">
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
             className="text-center mb-12"
@@ -315,141 +224,38 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Preguntas Frecuentes
+            <h2 id="contacto-heading" className="text-3xl md:text-4xl font-bold text-white mb-4">
+              ¿Iniciamos tu transformación digital?
             </h2>
-            <p className="text-muted-foreground">Derribando objeciones</p>
+            <p className="text-slate-400 text-lg">
+              Analizamos tu caso y te brindamos una hoja de ruta técnica en menos de 24 hs.
+            </p>
           </motion.div>
+          <ContactForm />
+        </div>
+      </section>
+
+      <section id="faq" className="py-24 border-t border-white/10 bg-black/30" aria-labelledby="faq-heading">
+        <div className="container mx-auto px-4 max-w-2xl">
           <motion.div
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="text-left text-foreground hover:text-[#F57C00]">
-                  ¿Hacen factura A?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Sí. Emitimos factura A para todos nuestros clientes.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="text-left text-foreground hover:text-[#F57C00]">
-                  ¿El software es de pago único o mensual?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Depende del proyecto. Ofrecemos desarrollo por encargo (pago
-                  único), suscripción mensual para mantenimiento y hosting, o
-                  modelos híbridos. Lo adaptamos a tu flujo de caja.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="text-left text-foreground hover:text-[#F57C00]">
-                  ¿Cuánto tarda un desarrollo?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Un MVP funcional suele estar listo en 4 semanas. Proyectos más
-                  complejos se dimensionan en la fase de diagnóstico.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Inversión Segura
+            </h2>
+            <p className="text-slate-400">
+              Respondemos tus dudas para que el único foco sea el crecimiento de tu negocio.
+            </p>
           </motion.div>
+          <FaqSection items={FAQ_ITEMS} />
         </div>
       </section>
+      </main>
 
-      <footer className="py-20 border-t border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-6">
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-              <Link href="#servicios" className="hover:text-[#FFA726] transition-colors">
-                Servicios
-              </Link>
-              <Link href="#equipo" className="hover:text-[#FFA726] transition-colors">
-                Equipo
-              </Link>
-              <Link href="#faq" className="hover:text-[#FFA726] transition-colors">
-                FAQ
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
-                aria-label="WhatsApp"
-              >
-                <img
-                  src="https://cdn.simpleicons.org/whatsapp/25D366"
-                  alt="WhatsApp"
-                  className="h-8 w-8"
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a
-                href="https://instagram.com/fenixautodev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
-                aria-label="Instagram"
-              >
-                <img
-                  src="https://cdn.simpleicons.org/instagram/E4405F"
-                  alt="Instagram"
-                  className="h-8 w-8"
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a
-                href="https://github.com/FenixAutoDev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform hover:scale-110"
-                aria-label="GitHub"
-              >
-                <img
-                  src="https://cdn.simpleicons.org/github/white"
-                  alt="GitHub"
-                  className="h-8 w-8"
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a
-                href="mailto:contacto@fenixautodev.com"
-                className="transition-transform hover:scale-110"
-                aria-label="Email"
-              >
-                <img
-                  src="https://cdn.simpleicons.org/gmail/EA4335"
-                  alt="Gmail"
-                  className="h-8 w-8"
-                  width={32}
-                  height={32}
-                />
-              </a>
-            </div>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
-              <Link href="/">
-                <Image
-                  src={ASSETS.logo.footer}
-                  alt="Fenix Autodev"
-                  width={120}
-                  height={38}
-                  className="h-8 w-auto object-contain"
-                />
-              </Link>
-              <p className="text-muted-foreground text-sm">
-                © {new Date().getFullYear()} Fenix Autodev. Automatización y
-                Software a Medida en La Plata, Argentina.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
