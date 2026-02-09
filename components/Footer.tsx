@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 import { Github, Instagram, Mail, MessageCircle } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { NAV_LINKS } from "@/lib/navigation";
@@ -19,7 +20,7 @@ const linkBase =
 interface ContactItem {
   label: string;
   href: string;
-  icon: typeof Mail;
+  icon: LucideIcon;
   external: boolean;
 }
 
