@@ -47,10 +47,10 @@ export function FeaturedProjects() {
   return (
     <section
       id="proyectos"
-      className="pt-24 pb-20 border-t border-border bg-[#020817]"
+      className="pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-16 md:pb-20 border-t border-border bg-[#020817]"
       aria-labelledby="proyectos-heading"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -59,15 +59,15 @@ export function FeaturedProjects() {
         >
           <h2
             id="proyectos-heading"
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 section-title"
           >
             Proyectos destacados
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
             Casos de éxito con resultados medibles.
           </p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.title}
@@ -82,7 +82,7 @@ export function FeaturedProjects() {
                 rel={project.external ? "noopener noreferrer" : undefined}
                 className="block h-full group"
               >
-                <div className="h-full rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[#F57C00] hover:shadow-[0_0_40px_rgba(245,124,0,0.08)]">
+                <div className="h-full rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-orange-500/60 hover:shadow-[0_0_40px_rgba(249,115,22,0.12)]">
                   {USO_IMAGENES.proyectos && (
                     <div className="relative aspect-video w-full overflow-hidden">
                       <Image
@@ -92,33 +92,33 @@ export function FeaturedProjects() {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <span className="absolute top-4 left-4 text-[10px] font-semibold uppercase tracking-widest text-[#F57C00] bg-[#F57C00]/10 px-2.5 py-1 rounded">
+                      <span className="absolute top-4 left-4 text-[10px] font-semibold uppercase tracking-widest text-orange-500 bg-orange-500/10 px-2.5 py-1 rounded">
                         {project.tag}
                       </span>
                     </div>
                   )}
-                  <div className="p-6 space-y-4">
+                  <div className="p-4 sm:p-6 space-y-4">
                     {!USO_IMAGENES.proyectos && (
-                      <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-[#F57C00] bg-[#F57C00]/10 px-2.5 py-1 rounded">
+                      <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-orange-500 bg-orange-500/10 px-2.5 py-1 rounded">
                         {project.tag}
                       </span>
                     )}
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
                         {!USO_IMAGENES.proyectos && (
-                          <div className="w-12 h-12 rounded-xl bg-[#F57C00]/10 flex items-center justify-center mb-4 group-hover:bg-[#F57C00]/20 transition-colors">
-                            <project.icon className="h-6 w-6 text-[#F57C00]" />
+                          <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                            <project.icon className="h-6 w-6 text-orange-500" />
                           </div>
                         )}
-                        <h3 className="text-white font-bold text-lg mb-2 group-hover:text-[#F57C00] transition-colors">
+                        <h3 className="text-orange-500 font-bold text-lg mb-2">
                           {project.title}
                         </h3>
-                        <p className="text-slate-400 text-sm leading-relaxed font-light">
+                        <p className="text-slate-200 text-sm leading-relaxed font-light">
                           {project.description}
                         </p>
                       </div>
                       <div className="flex-shrink-0 text-right">
-                        <span className="block text-2xl md:text-3xl font-bold text-[#F57C00] tabular-nums">
+                        <span className="block text-2xl md:text-3xl font-bold text-orange-500 tabular-nums">
                           {project.impact}
                         </span>
                         <span className="block text-[10px] font-medium uppercase tracking-widest text-slate-500">

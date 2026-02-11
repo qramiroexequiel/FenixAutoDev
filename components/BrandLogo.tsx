@@ -36,13 +36,13 @@ export function BrandLogo({
           alt=""
           width={128}
           height={128}
-          className="h-14 w-auto object-contain md:h-16 transition-transform duration-300 group-hover:scale-105"
+          className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[120px] object-contain transition-transform duration-300 group-hover:scale-105"
           priority={priority}
         />
       </div>
-      <div className="flex flex-col justify-center">
-        <span className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight whitespace-nowrap">
-          Fenix <span className="text-[#F57C00]">AutoDev</span>
+      <div className="flex flex-col justify-center min-w-0">
+        <span className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">
+          Fenix <span className="text-orange-500">AutoDev</span>
         </span>
         {subtitle && (
           <span
@@ -62,7 +62,7 @@ export function BrandLogo({
     <Link
       href="/"
       className={cn(
-        "group flex items-center gap-3 md:gap-4 shrink-0 p-0 m-0 min-w-0",
+        "group flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0 p-0 m-0 min-w-0",
         className
       )}
       onClick={onClick}

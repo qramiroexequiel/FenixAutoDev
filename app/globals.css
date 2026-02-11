@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Mobile-First Responsive Base ===== */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem; /* 96px - altura del navbar desktop */
+  /* Mobile: navbar ~80px | Tablet/Desktop: ~96px */
+  scroll-padding-top: 5rem; /* 80px mobile */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 6rem; /* 96px desktop */
+  }
+}
+
+/* Evitar desborde horizontal */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Imágenes no se desbordan (video mantiene estilos del componente) */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 @keyframes aura-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Border beam: rotación suave para efecto haz de luz */
+@keyframes border-beam-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
@@ -34,22 +59,76 @@ html {
   .animate-aura-rotate {
     animation: aura-rotate 4s linear infinite;
   }
+
+  .animate-border-beam {
+    animation: border-beam-rotate 6s linear infinite;
+  }
+
+  /* Touch target mínimo 44x44px (WCAG) */
+  .touch-target {
+    min-height: 2.75rem;   /* 44px */
+    min-width: 2.75rem;
+  }
+
+  /* Padding consistente: Mobile <768 | Tablet 768-1024 | Desktop >1024 */
+  .section-padding {
+    padding-top: 3rem;     /* 48px mobile */
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 4rem;   /* 64px tablet */
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 6rem;   /* 96px desktop */
+      padding-bottom: 6rem;
+    }
+  }
+
+  /* Container padding fluido */
+  .container-padding {
+    padding-left: 1rem;    /* 16px mobile */
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-padding {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
 }
 
 @layer base {
   :root {
     --background: #020817;
     --foreground: #f8fafc;
-    --primary: #F57C00;
-    --primary-hover: #FFA726;
+    --primary: #f97316;
+    --primary-hover: #ea580c;
     --primary-foreground: #0f172a;
+    --accent-orange: #f97316;
+    --phoenix-red: #e65100;
     --muted: #64748b;
     --muted-foreground: #94a3b8;
     --card: #0f172a;
     --card-foreground: #f8fafc;
     --border: #1e293b;
     --input: #1e293b;
-    --ring: #F57C00;
+    --ring: #f97316;
+    /* Breakpoints: mobile <768 | tablet 768-1024 | desktop >1024 */
+    --touch-min: 2.75rem;  /* 44px */
   }
 
   * {
@@ -59,4 +138,36 @@ html {
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  /* Selección de texto con naranja de marca */
+  ::selection {
+    background-color: rgba(249, 115, 22, 0.35);
+  }
+  ::-moz-selection {
+    background-color: rgba(249, 115, 22, 0.35);
+  }
+
+  /* Títulos responsive para legibilidad */
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 3.75rem);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+  }
+
+  h3 {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  }
+
+  /* Título de sección: naranja Fénix (#f97316) - identidad 100% naranja */
+  .section-title {
+    color: #f97316;
+  }
+}
+
+/* Párrafos secundarios: gris muy claro para legibilidad */
+.text-secondary {
+  color: #e2e8f0;
 }

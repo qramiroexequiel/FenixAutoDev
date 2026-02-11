@@ -13,9 +13,9 @@ const GITHUB_URL = "https://github.com/fenixautodev";
 const INSTAGRAM_URL = "https://instagram.com/fenixautodev";
 
 const sectionTitle =
-  "text-[10px] uppercase tracking-[0.2em] text-slate-500 font-medium mb-5";
+  "text-[10px] uppercase tracking-[0.2em] text-orange-500 font-bold mb-5";
 const linkBase =
-  "text-sm text-slate-400 hover:text-[#F57C00] transition-colors duration-200";
+  "text-sm text-slate-200 hover:text-orange-500 transition-colors duration-200 inline-flex items-center gap-2 py-2 sm:py-0 min-h-[44px] sm:min-h-0";
 
 interface ContactItem {
   label: string;
@@ -57,9 +57,9 @@ export function Footer() {
       className="bg-[#020817] border-t border-white/5"
       role="contentinfo"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* 3 columnas: Identidad, Menú, Contacto & Redes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* 3 columnas: Identidad, Menú, Contacto & Redes | Mobile: 1 col, Tablet: 2, Desktop: 3 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-8 mb-10 sm:mb-12">
           {/* Columna 1: Identidad (alineado a la izquierda) */}
           <div className="flex justify-start">
             <BrandLogo
@@ -101,16 +101,13 @@ export function Footer() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-2 ${linkBase}`}
+                        className={linkBase}
                         aria-label={item.label}
                       >
                         {content}
                       </a>
                     ) : (
-                      <a
-                        href={item.href}
-                        className={`inline-flex items-center gap-2 ${linkBase}`}
-                      >
+                      <a href={item.href} className={linkBase}>
                         {content}
                       </a>
                     )}

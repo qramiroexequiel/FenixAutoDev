@@ -21,9 +21,21 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { nombre, empresa, problema, rubro, contacto } = body;
 
-    if (!nombre || !contacto) {
+    if (!nombre || typeof nombre !== "string" || nombre.trim().length < 2) {
       return NextResponse.json(
-        { error: "Nombre y contacto son obligatorios" },
+        { error: "El nombre debe tener al menos 2 caracteres" },
+        { status: 400 }
+      );
+    }
+    if (!contacto || typeof contacto !== "string" || contacto.trim().length < 5) {
+      return NextResponse.json(
+        { error: "El contacto es obligatorio" },
+        { status: 400 }
+      );
+    }
+    if (!problema || typeof problema !== "string" || problema.trim().length < 10) {
+      return NextResponse.json(
+        { error: "Describí tu desafío técnico con al menos 10 caracteres" },
         { status: 400 }
       );
     }

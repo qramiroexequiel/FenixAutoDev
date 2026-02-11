@@ -15,9 +15,9 @@ export function HeroSection() {
   };
 
   return (
-    <section className="w-full mt-8 md:mt-[3.75rem]" aria-label="Hero">
+    <section className="w-full mt-4 sm:mt-6 md:mt-[3.75rem]" aria-label="Hero">
       {/* Bloque superior: video a pantalla completa de ancho */}
-      <div className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden">
+      <div className="relative w-full h-[50vh] min-h-[280px] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <video
           autoPlay
           muted
@@ -46,26 +46,26 @@ export function HeroSection() {
       </div>
 
       {/* Bloque inferior: mensaje de marca sobre fondo sólido - sin gap */}
-      <div id="hero-message" className="bg-[#020817] px-4 py-24">
+      <div id="hero-message" className="bg-[#020817] px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <motion.div
           className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 text-balance text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 text-balance text-orange-500">
             Sistemas de Alta Precisión para Empresas Exigentes
           </h1>
 
-          <p className="text-slate-400 text-xl md:text-2xl font-light max-w-4xl mx-auto mb-12 leading-loose">
+          <p className="text-slate-200 text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed md:leading-loose">
             Sistemas a medida para operaciones que no admiten margen de error.
             Diseñamos e implementamos software e inteligencia artificial que
             automatizan procesos críticos, garantizan consistencia operativa y
             permiten escalar con control total.
           </p>
 
-          <div className="flex justify-center">
-            <CTAButton href={WHATSAPP_URL} className="px-8 py-3.5 text-base">
+          <div className="flex justify-center w-full sm:w-auto">
+            <CTAButton href={WHATSAPP_URL} className="w-full sm:w-auto px-8 py-3.5 text-base min-h-[48px] justify-center">
               Agendar Consultoría Gratuita
             </CTAButton>
           </div>

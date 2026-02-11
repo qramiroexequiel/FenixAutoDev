@@ -27,7 +27,7 @@ export const ASSETS = {
   equipo: {
     ramiro: "/foto perfil ramiro.jpeg",
     jose: "/foto perfil jose .jpeg",
-    hernan: "/equipo/equipo-hernan.webp",
+    hernan: "/foto perfil de hernan.jpeg",
   },
   og: "/og/og-image.jpg",
 } as const;

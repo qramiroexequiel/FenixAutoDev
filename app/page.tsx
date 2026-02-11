@@ -1,11 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Code2,
-  Search,
-  Rocket,
   Zap,
   BarChart3,
   Monitor,
@@ -17,21 +13,16 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { AuraCard } from "@/components/AuraCard";
+import { ServiceCard } from "@/components/ServiceCard";
 import { TechTicker } from "@/components/TechTicker";
 import { FaqSection } from "@/components/FaqSection";
 import { FAQ_ITEMS } from "@/lib/faq-data";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { TeamSection } from "@/components/TeamSection";
 import { ImpactSection } from "@/components/ImpactSection";
+import { MethodologySection } from "@/components/MethodologySection";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 
@@ -43,7 +34,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-      <main className="pt-20 md:pt-24">
+      <main className="pt-16 sm:pt-20 md:pt-24">
       <HeroSection />
 
       <TechTicker />
@@ -52,31 +43,31 @@ export default function Home() {
 
       <ImpactSection />
 
-      <section id="servicios" className="relative py-24 bg-card/30 border-t border-border overflow-hidden" aria-labelledby="servicios-heading">
+      <section id="servicios" className="relative py-12 sm:py-16 md:py-24 bg-card/30 border-t border-border overflow-hidden" aria-labelledby="servicios-heading">
         {/* Spotlight - luz naranja tenue de fondo */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] pointer-events-none opacity-[0.08]"
           style={{
-            background: "radial-gradient(ellipse at center, rgba(245,124,0,0.4) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(249,115,22,0.25) 0%, transparent 65%)",
           }}
           aria-hidden
         />
-        <div className="container relative mx-auto px-4">
+        <div className="container relative mx-auto px-4 sm:px-6">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 id="servicios-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="servicios-heading" className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 section-title">
               Servicios que diseñamos
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
               Software a Medida para PyMEs en La Plata y toda Argentina.
               Automatización que escala.
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
                 title: "Webs que Venden 24/7",
@@ -133,101 +124,34 @@ export default function Home() {
                 icon: RefreshCcw,
               },
             ].map((service, i) => (
-              <AuraCard key={service.title} delay={i * 0.1}>
-                <Card className="bg-transparent border-0 shadow-none h-full min-h-[200px]">
-                  <CardHeader className="transition-colors duration-500 h-full">
-                    <service.icon className="w-14 h-14 text-[#F57C00] mb-4 drop-shadow-[0_0_12px_rgba(245,124,0,0.5)]" />
-                    <CardTitle className="text-foreground text-xl font-bold">
-                      {service.title}
-                    </CardTitle>
-                    <CardDescription className="text-slate-400">{service.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </AuraCard>
+              <ServiceCard
+                key={service.title}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                delay={i * 0.08}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#020817] border-t border-border" aria-labelledby="metodologia-heading">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 id="metodologia-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Cómo convertimos tu idea en software
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Metodología clara, sin sorpresas.
-            </p>
-          </motion.div>
-          <div className="relative max-w-4xl mx-auto">
-            <div className="hidden md:block absolute top-24 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            <div className="grid md:grid-cols-3 gap-12 md:gap-8 relative">
-              {[
-                {
-                  step: 1,
-                  title: "Diagnóstico",
-                  description:
-                    "Analizamos los cuellos de botella de tu negocio. No escribimos una línea de código sin entender el problema.",
-                  icon: Search,
-                },
-                {
-                  step: 2,
-                  title: "Desarrollo Ágil",
-                  description:
-                    "Sprints semanales. Vas viendo el avance y ajustamos el rumbo juntos. Sin sorpresas al final.",
-                  icon: Code2,
-                },
-                {
-                  step: 3,
-                  title: "Despegue",
-                  description:
-                    "Implementación, capacitación a tu equipo y soporte post-lanzamiento.",
-                  icon: Rocket,
-                },
-              ].map((step, i) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="relative flex flex-col items-center text-center"
-                >
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-card border-2 border-[#F57C00]/50 flex items-center justify-center mb-6">
-                    <step.icon className="h-8 w-8 text-[#F57C00]" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <MethodologySection />
 
       <TeamSection />
 
-      <section id="contacto" className="py-24 bg-card/30 border-t border-border" aria-labelledby="contacto-heading">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <section id="contacto" className="py-12 sm:py-16 md:py-24 bg-card/30 border-t border-border" aria-labelledby="contacto-heading">
+        <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 id="contacto-heading" className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 id="contacto-heading" className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 section-title">
               ¿Iniciamos tu transformación digital?
             </h2>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-200 text-base sm:text-lg">
               Analizamos tu caso y te brindamos una hoja de ruta técnica en menos de 24 hs.
             </p>
           </motion.div>
@@ -235,18 +159,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="py-24 border-t border-white/10 bg-black/30" aria-labelledby="faq-heading">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <section id="faq" className="py-12 sm:py-16 md:py-24 border-t border-white/10 bg-black/30" aria-labelledby="faq-heading">
+        <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="faq-heading" className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 section-title">
               Inversión Segura
             </h2>
-            <p className="text-slate-400">
+            <p className="text-slate-200">
               Respondemos tus dudas para que el único foco sea el crecimiento de tu negocio.
             </p>
           </motion.div>

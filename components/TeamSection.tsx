@@ -4,7 +4,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ASSETS } from "@/lib/assets";
 
-const MEMBERS = [
+const MEMBERS: Array<{
+  name: string;
+  role: string;
+  bio: string;
+  initials: string;
+  badge: string;
+  image: string | null;
+}> = [
   {
     name: "Ramiro Quevedo",
     role: "CTO & Co-Founder",
@@ -27,7 +34,7 @@ const MEMBERS = [
     bio: "Director de Implementación y Seguridad. Especialista en despliegue de infraestructura crítica, integridad de datos y continuidad de negocio.",
     initials: "H",
     badge: "INFRASTRUCTURE-SECURITY",
-    image: null,
+    image: ASSETS.equipo.hernan,
   },
 ];
 
@@ -35,10 +42,10 @@ export function TeamSection() {
   return (
     <section
       id="equipo"
-      className="py-24 bg-[#020817] border-t border-border"
+      className="py-12 sm:py-16 md:py-24 bg-[#020817] border-t border-border"
       aria-labelledby="equipo-heading"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -47,17 +54,17 @@ export function TeamSection() {
         >
           <h2
             id="equipo-heading"
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 px-2 sm:px-0 section-title"
           >
             Liderazgo con Experiencia Real
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
             No solo escribimos código. Entendemos tu negocio porque venimos de
             ahí.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto items-stretch">
           {MEMBERS.map((member, i) => (
             <motion.div
               key={member.name}
@@ -67,11 +74,23 @@ export function TeamSection() {
               transition={{ delay: i * 0.12, duration: 0.6 }}
               className="group flex"
             >
-              <div className="flex flex-col w-full rounded-xl border border-white/5 bg-[#020817]/50 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:border-[#F57C00] hover:shadow-[0_8px_30px_rgba(245,124,0,0.12)] hover:-translate-y-1 min-h-[360px]">
-                {/* Avatar: foto o iniciales con gradiente */}
-                <div className="relative shrink-0 w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-2 border-[#F57C00]/40 flex items-center justify-center bg-[#020817]/80">
-                  {member.image ? (
-                    <div className="absolute inset-0 transition-[filter] duration-300 group-hover:grayscale-0 grayscale">
+              <motion.div
+                className="group/card relative flex flex-col w-full rounded-xl border border-white/10 bg-[#020817]/50 backdrop-blur-sm p-6 sm:p-8 text-center min-h-[320px] sm:min-h-[360px] overflow-hidden transition-all duration-300 ease-out hover:border-orange-500/60 hover:shadow-[0_0_40px_rgba(249,115,22,0.15),0_8px_30px_rgba(249,115,22,0.12)]"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {/* Contenedor avatar con glow naranja en hover */}
+                <div className="relative shrink-0 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                  {/* Glow naranja detrás de la foto (visible en hover) */}
+                  <div
+                    className="absolute inset-0 rounded-full bg-orange-500/40 blur-xl scale-150 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
+                    aria-hidden
+                  />
+                  {/* Avatar circular - colores originales, borde sutil, scale en hover */}
+                  <motion.div
+                    className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-white/50 flex items-center justify-center bg-[#020817]/80 transition-transform duration-300 ease-out group-hover/card:scale-110"
+                  >
+                    {member.image ? (
                       <Image
                         src={member.image}
                         alt={`${member.name} - ${member.role} en Fénix AutoDev`}
@@ -79,36 +98,37 @@ export function TeamSection() {
                         className="object-cover"
                         sizes="96px"
                       />
-                    </div>
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center text-white font-semibold text-2xl tracking-tight"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(245,124,0,0.35) 0%, rgba(245,124,0,0.1) 100%)",
-                      }}
-                    >
-                      {member.initials}
-                    </div>
-                  )}
+                    ) : (
+                      <div
+                        className="w-full h-full flex items-center justify-center text-white font-semibold text-2xl tracking-tight"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(249,115,22,0.35) 0%, rgba(249,115,22,0.1) 100%)",
+                        }}
+                      >
+                        {member.initials}
+                      </div>
+                    )}
+                  </motion.div>
                 </div>
 
-                <h3 className="font-bold text-white text-lg mb-1">
+                <h3 className="font-bold text-orange-500 text-lg mb-1">
                   {member.name}
                 </h3>
 
-                <span className="inline-block font-mono text-[10px] tracking-[0.2em] text-slate-500 uppercase mb-4 shrink-0">
-                  [ {member.badge} ]
+                {/* Badge tecnológico: fondo oscuro, borde naranja, letra naranja */}
+                <span className="inline-block font-mono text-[10px] tracking-[0.2em] uppercase mb-4 shrink-0 px-2.5 py-1 rounded border border-orange-500/60 bg-[#020817]/90 text-orange-500">
+                  {member.badge}
                 </span>
 
-                <p className="text-[#F57C00] text-sm font-semibold mb-3 shrink-0">
+                <p className="text-orange-500 text-sm font-semibold mb-3 shrink-0">
                   {member.role}
                 </p>
 
-                <p className="text-slate-400 text-sm leading-relaxed font-light flex-1">
+                <p className="text-slate-200 text-sm leading-relaxed font-light flex-1">
                   {member.bio}
                 </p>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

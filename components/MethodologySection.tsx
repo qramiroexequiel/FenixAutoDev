@@ -2,53 +2,34 @@
 
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import {
-  Zap,
-  ShieldCheck,
-  Activity,
-  Layers,
-  Timer,
-  Lock,
-} from "lucide-react";
+import { Search, Code2, Rocket } from "lucide-react";
 
-const BENEFITS = [
+const STEPS = [
   {
-    title: "Eficiencia Autónoma",
-    description: "Eliminamos el trabajo manual y lo repetitivo.",
-    icon: Zap,
+    title: "Diagnóstico",
+    description:
+      "Analizamos los cuellos de botella de tu negocio. No escribimos una línea de código sin entender el problema.",
+    icon: Search,
   },
   {
-    title: "Integridad de Datos",
-    description: "Procesos críticos sin factor humano.",
-    icon: ShieldCheck,
+    title: "Desarrollo Ágil",
+    description:
+      "Sprints semanales. Vas viendo el avance y ajustamos el rumbo juntos. Sin sorpresas al final.",
+    icon: Code2,
   },
   {
-    title: "Visibilidad Operativa",
-    description: "Control total de tu operación en tiempo real.",
-    icon: Activity,
-  },
-  {
-    title: "Arquitectura Elástica",
-    description: "Sistemas diseñados para escalar con tu negocio.",
-    icon: Layers,
-  },
-  {
-    title: "Velocidad de Respuesta",
-    description: "Optimizamos los tiempos de ejecución para una ventaja competitiva.",
-    icon: Timer,
-  },
-  {
-    title: "Seguridad Blindada",
-    description: "Protocolos de protección de datos de grado industrial.",
-    icon: Lock,
+    title: "Despegue",
+    description:
+      "Implementación, capacitación a tu equipo y soporte post-lanzamiento.",
+    icon: Rocket,
   },
 ];
 
-function ImpactCard({
-  benefit,
+function MethodologyCard({
+  step,
   index,
 }: {
-  benefit: (typeof BENEFITS)[number];
+  step: (typeof STEPS)[number];
   index: number;
 }) {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
@@ -64,7 +45,7 @@ function ImpactCard({
     []
   );
 
-  const Icon = benefit.icon;
+  const Icon = step.icon;
 
   return (
     <motion.div
@@ -86,7 +67,7 @@ function ImpactCard({
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Luz que sigue al cursor */}
+        {/* Luz que sigue al cursor - mismo efecto que Impacto */}
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           aria-hidden
@@ -96,7 +77,8 @@ function ImpactCard({
             style={{
               left: `${mouse.x}%`,
               top: `${mouse.y}%`,
-              background: "radial-gradient(circle, rgba(249,115,22,0.4) 0%, rgba(230,81,0,0.15) 45%, transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(249,115,22,0.4) 0%, rgba(230,81,0,0.15) 45%, transparent 70%)",
               transition: "left 0.15s ease-out, top 0.15s ease-out",
             }}
           />
@@ -105,26 +87,29 @@ function ImpactCard({
         {/* Icono con glow */}
         <div className="relative mb-4">
           <div className="inline-flex items-center justify-center rounded-full border-2 border-orange-500/60 bg-[#020817]/80 p-2.5 shadow-[0_0_24px_rgba(249,115,22,0.3),inset_0_0_12px_rgba(249,115,22,0.08)]">
-            <Icon className="h-6 w-6 text-orange-500 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)] transition-all duration-300" strokeWidth={2} />
+            <Icon
+              className="h-6 w-6 text-orange-500 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)] transition-all duration-300"
+              strokeWidth={2}
+            />
           </div>
         </div>
 
         <h3 className="relative text-lg font-bold text-orange-500 mb-2">
-          {benefit.title}
+          {step.title}
         </h3>
         <p className="relative text-slate-200 text-sm font-light leading-relaxed">
-          {benefit.description}
+          {step.description}
         </p>
       </motion.div>
     </motion.div>
   );
 }
 
-export function ImpactSection() {
+export function MethodologySection() {
   return (
     <section
       className="relative pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-24 border-t border-border bg-[#020817] overflow-hidden"
-      aria-labelledby="impacto-heading"
+      aria-labelledby="metodologia-heading"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
@@ -134,20 +119,20 @@ export function ImpactSection() {
           viewport={{ once: true }}
         >
           <h2
-            id="impacto-heading"
+            id="metodologia-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 px-2 sm:px-0 section-title"
           >
-            El impacto de trabajar con Fenix AutoDev
+            Cómo convertimos tu idea en software
           </h2>
           <p className="text-slate-200 text-base sm:text-lg max-w-xl mx-auto px-2 sm:px-0">
-            Métricas y beneficios reales.
+            Metodología clara, sin sorpresas.
           </p>
         </motion.div>
 
-        {/* Bento Grid: Mobile 1 col | Tablet 2 cols | Desktop 3 cols */}
+        {/* Grid idéntico a Impacto: 1 col mobile, 2 tablet, 3 desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
-          {BENEFITS.map((benefit, i) => (
-            <ImpactCard key={benefit.title} benefit={benefit} index={i} />
+          {STEPS.map((step, i) => (
+            <MethodologyCard key={step.title} step={step} index={i} />
           ))}
         </div>
       </div>

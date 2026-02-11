@@ -58,18 +58,17 @@ export function FaqSection({ items }: FaqSectionProps) {
             >
               <AccordionTrigger
                 className={cn(
-                  "flex items-start gap-3 py-5 text-left hover:no-underline",
-                  "text-white hover:text-[#F57C00] transition-colors duration-300",
-                  "[&[data-state=open]]:text-[#F57C00]"
+                  "flex items-start gap-3 py-4 sm:py-5 min-h-[52px] text-left hover:no-underline",
+                  "text-orange-500 font-medium"
                 )}
               >
                 <CheckCircle2
-                  className="h-5 w-5 shrink-0 text-[#F57C00] mt-0.5"
+                  className="h-5 w-5 shrink-0 text-orange-500 mt-0.5"
                   aria-hidden
                 />
                 <span className="font-medium">{item.question}</span>
               </AccordionTrigger>
-              <AccordionContent className="text-slate-400 text-base leading-relaxed pl-8 pr-4 pb-5 pt-0">
+              <AccordionContent className="text-slate-200 text-base leading-relaxed pl-8 pr-4 pb-5 pt-0">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

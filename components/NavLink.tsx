@@ -33,13 +33,13 @@ export function NavLink({ href, children, onClick, className = "" }: NavLinkProp
       className={`group/link relative px-3 py-2 text-sm font-medium rounded-lg overflow-hidden transition-all duration-500 ${className}`}
     >
       {/* Texto con blur reveal - desenfocado por defecto, enfocado al hover */}
-      <span className="relative z-10 block text-slate-200/80 blur-[0.5px] group-hover/link:text-white group-hover/link:blur-none transition-all duration-500">
+      <span className="relative z-10 block text-white/90 blur-[0.5px] group-hover/link:text-orange-500 group-hover/link:blur-none transition-all duration-500">
         {children}
       </span>
 
       {/* Punto de luz naranja que sigue el cursor por debajo */}
       <motion.span
-        className="absolute h-6 w-6 rounded-full bg-[#F57C00]/50 blur-md pointer-events-none opacity-0 group-hover/link:opacity-100 -z-0"
+        className="absolute h-6 w-6 rounded-full bg-orange-500/60 blur-md pointer-events-none opacity-0 group-hover/link:opacity-100 -z-0"
         style={{
           left: spot.x,
           top: spot.y,

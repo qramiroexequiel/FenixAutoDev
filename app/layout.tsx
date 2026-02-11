@@ -6,18 +6,15 @@ import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
 const title =
-  "Fenix AutoDev | Sistemas de Alta Precisión y Automatización Inteligente";
+  "Fénix AutoDev | Software a Medida y Automatización para PyMEs";
 const description =
-  "Lideramos la transformación digital de empresas exigentes. Expertos en Automatización con IA, Arquitecturas Elásticas y Migración de Sistemas Críticos. Soluciones robustas con Factura A en Argentina.";
+  "Transformamos el caos de tu negocio en sistemas eficientes. Especialistas en Python, automatización de procesos y desarrollo de software a medida en Argentina. ¡Pedí tu auditoría gratuita!";
 const keywords = [
-  "Automatización",
-  "Inteligencia Artificial",
   "Software a medida",
-  "La Plata",
-  "Argentina",
-  "Sistemas PyMEs",
-  "Eficiencia Operativa",
-  "Factura A",
+  "Automatización PyMEs Argentina",
+  "Python Developer",
+  "Fénix AutoDev",
+  "Desarrollo sistemas La Plata",
 ];
 const ogImage = `${SITE_URL}/og-image.png`;
 
@@ -120,7 +117,7 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Sistemas de Alta Precisión y Automatización Inteligente`,
+        alt: `${SITE_NAME} - Software a Medida y Automatización para PyMEs en Argentina`,
       },
     ],
   },
@@ -140,7 +137,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
-      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.svg", sizes: "any", type: "image/svg+xml" },
     ],
   },
 };

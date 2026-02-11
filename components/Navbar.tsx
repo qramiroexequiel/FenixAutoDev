@@ -56,7 +56,7 @@ export function Navbar() {
       role="banner"
     >
       <nav
-        className="container mx-auto px-4 h-20 md:h-24 flex items-center justify-between gap-4"
+        className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 md:h-24 flex items-center justify-between gap-2 sm:gap-4"
         aria-label="Navegación principal"
       >
         {/* Brand + Nav + CTA - eje central compartido */}
@@ -83,23 +83,23 @@ export function Navbar() {
             </CTAButton>
           </div>
 
-          {/* Tablet/Mobile: CTA + Hamburger */}
-          <div className="flex lg:hidden items-center gap-2 shrink-0">
-            <CTAButton href={WHATSAPP_URL} className="px-4 py-2">
+          {/* Tablet/Mobile: CTA + Hamburger (touch target min 44x44) */}
+          <div className="flex lg:hidden items-center gap-2 sm:gap-3 shrink-0">
+            <CTAButton href={WHATSAPP_URL} className="px-4 py-3 min-h-[44px] sm:py-2">
               Quiero automatizar
             </CTAButton>
             <button
               type="button"
               onClick={() => setIsOpen((o) => !o)}
-              className="p-2 -mr-2 rounded-lg text-slate-200 hover:text-white hover:bg-white/5 hover:border hover:border-white/10 border border-transparent transition-all duration-500"
+              className="min-h-[44px] min-w-[44px] p-3 -mr-1 flex items-center justify-center rounded-lg text-slate-200 hover:text-white hover:bg-white/5 hover:border hover:border-white/10 border border-transparent transition-all duration-500"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
             >
               {isOpen ? (
-                <X className="h-6 w-6" aria-hidden />
+                <X className="h-6 w-6 shrink-0" aria-hidden />
               ) : (
-                <Menu className="h-6 w-6" aria-hidden />
+                <Menu className="h-6 w-6 shrink-0" aria-hidden />
               )}
             </button>
           </div>
@@ -111,18 +111,18 @@ export function Navbar() {
         id="mobile-menu"
         className={cn(
           "lg:hidden overflow-hidden transition-all duration-300 ease-out",
-          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[340px] opacity-100" : "max-h-0 opacity-0"
         )}
         role="region"
         aria-label="Menú de navegación móvil"
       >
-        <div className="border-t border-border bg-[#020817]/95 backdrop-blur-lg px-4 py-4 space-y-1">
+        <div className="border-t border-border bg-[#020817]/95 backdrop-blur-lg px-4 sm:px-6 py-4 space-y-0">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}
               href={link.href}
               onClick={closeMenu}
-              className="block px-4 py-3 text-base"
+              className="block px-4 py-4 min-h-[48px] text-base"
             >
               {link.label}
             </NavLink>

@@ -66,7 +66,7 @@ export default function PymesPage() {
             <p className="text-[#F57C00] text-sm font-medium uppercase tracking-wider mb-4">
               Control y Rentabilidad
             </p>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-orange-500 mb-6">
               Tu Stock y Logística, Controlados al 100%.
             </h1>
             <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-10">
@@ -90,7 +90,7 @@ export default function PymesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-orange-500 mb-4">
                 Soluciones para depósitos y distribuidoras
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -129,7 +129,7 @@ export default function PymesPage() {
                   <Card className="bg-card border-border hover:border-[#F57C00]/50 transition-colors h-full">
                     <CardHeader>
                       <item.icon className="w-14 h-14 text-[#F57C00] mb-4" />
-                      <CardTitle className="text-foreground text-xl">
+                      <CardTitle className="text-orange-500 font-bold text-xl">
                         {item.title}
                       </CardTitle>
                       <CardDescription className="text-slate-300">
@@ -156,7 +156,7 @@ export default function PymesPage() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl mx-auto space-y-8"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-orange-500">
                 ¿Tu depósito es un caos de papeles? Ordenalo hoy mismo.
               </h2>
               <Button asChild size="lg" className="bg-[#F57C00] hover:bg-[#FFA726] text-white text-lg px-10 py-6">

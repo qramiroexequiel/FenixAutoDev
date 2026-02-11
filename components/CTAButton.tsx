@@ -55,17 +55,17 @@ export function CTAButton({
       onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`group/cta relative inline-flex justify-center items-center px-5 py-2.5 rounded-xl overflow-hidden ${fullWidth ? "w-full" : ""} ${className}`}
+      className={`group/cta relative inline-flex justify-center items-center min-h-[44px] px-5 py-3 sm:py-2.5 rounded-xl overflow-hidden ${fullWidth ? "w-full" : ""} ${className}`}
       style={{ x: xSpring, y: ySpring }}
       animate={{
         boxShadow: [
-          "0 0 20px rgba(245,124,0,0.15)",
-          "0 0 28px rgba(245,124,0,0.25)",
-          "0 0 20px rgba(245,124,0,0.15)",
+          "0 0 20px rgba(249,115,22,0.2)",
+          "0 0 28px rgba(230,81,0,0.3)",
+          "0 0 20px rgba(249,115,22,0.2)",
         ],
       }}
       whileHover={{
-        boxShadow: "0 0 35px rgba(245,124,0,0.4), 0 0 60px rgba(245,124,0,0.2)",
+        boxShadow: "0 0 35px rgba(249,115,22,0.45), 0 0 60px rgba(230,81,0,0.25)",
       }}
       transition={{
         boxShadow: {
@@ -75,11 +75,11 @@ export function CTAButton({
         },
       }}
     >
-      {/* Aura perimetral - conic gradient animado */}
+      {/* Aura perimetral - gradiente naranja a rojo-fénix */}
       <span
         className="absolute inset-0 rounded-xl animate-aura-rotate"
         style={{
-          background: "conic-gradient(from 0deg, #F57C00, #FF9800, #e65100, #F57C00)",
+          background: "conic-gradient(from 0deg, #f97316, #ea580c, #e65100, #dc2626, #f97316)",
         }}
       />
 
@@ -99,8 +99,8 @@ export function CTAButton({
         aria-hidden
       />
 
-      {/* Texto con glow */}
-      <span className="relative z-10 font-semibold text-sm tracking-wide text-white drop-shadow-[0_0_8px_rgba(245,124,0,0.3)] group-hover/cta:drop-shadow-[0_0_15px_rgba(245,124,0,0.5)] transition-all duration-300">
+      {/* Texto con glow naranja */}
+      <span className="relative z-10 font-semibold text-sm tracking-wide text-white drop-shadow-[0_0_8px_rgba(249,115,22,0.35)] group-hover/cta:drop-shadow-[0_0_15px_rgba(249,115,22,0.55)] transition-all duration-300">
         {children}
       </span>
     </motion.a>

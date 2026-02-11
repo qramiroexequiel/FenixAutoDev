@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		/* Breakpoints: sm 640 | md 768 | lg 1024. Mobile <768, Tablet 768-1024, Desktop >1024 */
+  		container: {
+  			center: true,
+  			padding: '1rem',
+  		},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)',
