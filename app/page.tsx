@@ -16,13 +16,13 @@ import { CTAButton } from "@/components/CTAButton";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceCard } from "@/components/ServiceCard";
-import { TechTicker } from "@/components/TechTicker";
 import { FaqSection } from "@/components/FaqSection";
 import { FAQ_ITEMS } from "@/lib/faq-data";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { TeamSection } from "@/components/TeamSection";
 import { ImpactSection } from "@/components/ImpactSection";
 import { MethodologySection } from "@/components/MethodologySection";
+import { TechStackSection } from "@/components/TechStackSection";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 
@@ -36,8 +36,6 @@ export default function Home() {
 
       <main className="pt-16 sm:pt-20 md:pt-24">
       <HeroSection />
-
-      <TechTicker />
 
       <FeaturedProjects />
 
@@ -138,6 +136,8 @@ export default function Home() {
 
       <MethodologySection />
 
+      <TechStackSection />
+
       <TeamSection />
 
       <section id="contacto" className="py-12 sm:py-16 md:py-24 bg-card/30 border-t border-border" aria-labelledby="contacto-heading">
@@ -159,8 +159,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="py-12 sm:py-16 md:py-24 border-t border-white/10 bg-black/30" aria-labelledby="faq-heading">
-        <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
+      <section id="faq" className="py-12 sm:py-16 md:py-24 border-t border-border bg-[#020817]" aria-labelledby="faq-heading">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}

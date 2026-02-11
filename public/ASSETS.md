@@ -100,7 +100,7 @@ No hace falta tocar los componentes.
 ## Auditoría breve – estado actual
 
 ### Lo que funciona bien
-- **Estructura:** Hero → TechTicker → Proyectos → Beneficios → Servicios → Proceso → Equipo → FAQ → Contacto → Footer.
+- **Estructura:** Hero → Proyectos → Beneficios → Servicios → Proceso → Tecnologías → Equipo → FAQ → Contacto → Footer.
 - **Espaciado:** `py-24` consistente.
 - **Colores:** Naranja `#FF8C00` y `#f97316` coherentes.
 - **Responsive:** Grids y layout pensados para móvil.

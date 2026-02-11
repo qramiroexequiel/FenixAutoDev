@@ -34,4 +34,22 @@ export const FAQ_ITEMS = [
     answer:
       "Ese es nuestro fuerte. Somos expertos en Interconectividad. Podemos conectar tu nuevo software con sistemas contables, CRMs existentes o APIs de terceros para que la transición sea sin fricciones.",
   },
+  {
+    id: "item-6",
+    question: "¿Cuánto tiempo toma ver los primeros resultados de la automatización?",
+    answer:
+      "Depende del alcance, pero en proyectos de automatización típicos ves resultados en 2 a 4 semanas. Trabajamos por sprints cortos: entregas incrementales que generan valor desde el primer mes.",
+  },
+  {
+    id: "item-7",
+    question: "¿Mi equipo necesita conocimientos técnicos para usar el software?",
+    answer:
+      "No. Diseñamos interfaces intuitivas para que tu equipo opere el sistema con mínima curva de aprendizaje. Incluimos capacitación y documentación clara. El software trabaja por vos, no al revés.",
+  },
+  {
+    id: "item-8",
+    question: "¿Qué medidas de seguridad aplican para proteger mis datos operativos?",
+    answer:
+      "Aplicamos encriptación en tránsito y en reposo, autenticación robusta, backups programados y buenas prácticas OWASP. Cumplimos con normas de protección de datos y adaptamos la seguridad al nivel de criticidad de tu negocio.",
+  },
 ] as const;
