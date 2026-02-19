@@ -29,79 +29,7 @@ const organizationSchema = {
   sameAs: [
     "https://www.instagram.com/fenixautodev",
     "https://github.com/fenixautodev",
-  ],
-};
-
-const schemaOrg = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: `${SITE_URL}/logo-fenix.png`,
-      founder: [
-        {
-          "@type": "Person",
-          name: "Ramiro Quevedo",
-          jobTitle: "CTO & Lead Developer",
-        },
-        {
-          "@type": "Person",
-          name: "José",
-          jobTitle: "Consultor Especialista en Salud",
-        },
-        {
-          "@type": "Person",
-          name: "Hernán",
-          jobTitle: "Operaciones & Logística",
-        },
-      ],
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": `${SITE_URL}/#professionalservice`,
-      name: SITE_NAME,
-      description,
-      url: SITE_URL,
-      image: ogImage,
-      logo: `${SITE_URL}/logo-fenix.png`,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "La Plata",
-        addressRegion: "Buenos Aires",
-        addressCountry: "AR",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: "-34.9214",
-        longitude: "-57.9545",
-      },
-      telephone: "+5492216902614",
-      sameAs: [
-        "https://instagram.com/fenixautodev",
-        "https://github.com/FenixAutoDev",
-      ],
-      areaServed: {
-        "@type": "Country",
-        name: "Argentina",
-      },
-      serviceType: [
-        "Desarrollo de Software",
-        "Automatización",
-        "Software para Clínicas",
-        "Software para PyMEs",
-      ],
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "09:00",
-          closes: "18:00",
-        },
-      ],
-    },
+    "https://www.linkedin.com/in/qramiroexequiel",
   ],
 };
 
@@ -171,13 +99,6 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${inter.className} bg-[#020817] antialiased`}>
-        <Script
-          id="schema-org"
-          strategy="beforeInteractive"
-          type="application/ld+json"
-        >
-          {JSON.stringify(schemaOrg)}
-        </Script>
         <Script
           id="schema-org-organization"
           strategy="beforeInteractive"
