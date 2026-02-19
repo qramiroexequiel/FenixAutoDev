@@ -15,13 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/pymes`,
       lastModified,
       changeFrequency: "weekly" as const,
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${SITE_URL}/salud`,
       lastModified,
       changeFrequency: "weekly" as const,
-      priority: 0.9,
+      priority: 0.8,
     },
   ];
 }

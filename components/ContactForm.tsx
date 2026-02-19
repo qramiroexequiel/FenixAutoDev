@@ -89,10 +89,18 @@ export function ContactForm() {
       const apiUrl =
         process.env.NEXT_PUBLIC_CONTACT_API_URL || "/api/contact";
 
+      const payload = {
+        nombre: formData.nombre.trim(),
+        empresa: formData.empresa.trim(),
+        problema: formData.problema.trim(),
+        rubro: formData.rubro.trim(),
+        contacto: formData.contacto.trim(),
+      };
+
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();

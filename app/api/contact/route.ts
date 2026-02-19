@@ -40,47 +40,61 @@ export async function POST(request: Request) {
       );
     }
 
-    const subject = `[NUEVO PROSPECTO] - Automatización solicitada por ${nombre}`;
+    const subject = `NUEVO LEAD: [${nombre.trim()}] - Fénix AutoDev`;
+
+    const esc = (s: string) =>
+      String(s ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    const n = esc(nombre.trim());
+    const e = esc((empresa || "").trim() || "—");
+    const p = esc((problema || "").trim());
+    const r = esc((rubro || "").trim() || "—");
+    const c = esc((contacto || "").trim());
+
     const html = `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="color-scheme" content="dark">
   <style>
-    body { font-family: system-ui, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; padding: 24px; }
-    h1 { color: #F57C00; font-size: 1.25rem; margin-bottom: 20px; }
-    .field { margin-bottom: 16px; padding: 12px; background: #f8fafc; border-radius: 8px; }
-    .label { font-weight: 600; color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .value { color: #0f172a; }
+    body { font-family: system-ui, sans-serif; line-height: 1.6; color: #e2e8f0; background: #020817; max-width: 600px; margin: 0 auto; padding: 24px; }
+    h1 { color: #f97316; font-size: 1.25rem; margin-bottom: 20px; }
+    .field { margin-bottom: 16px; padding: 12px; background: #0f172a; border-radius: 8px; border-left: 3px solid #f97316; }
+    .label { font-weight: 600; color: #f97316; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .value { color: #e2e8f0; }
     .footer { margin-top: 24px; font-size: 0.75rem; color: #94a3b8; }
   </style>
 </head>
 <body>
-  <h1>🚀 Nuevo prospecto desde fenixautodev.com</h1>
+  <h1>NUEVO LEAD desde fenixautodev.com</h1>
   
   <div class="field">
     <div class="label">Nombre</div>
-    <div class="value">${nombre}</div>
+    <div class="value">${n}</div>
+  </div>
+  
+  <div class="field">
+    <div class="label">Email / Contacto</div>
+    <div class="value">${c}</div>
   </div>
   
   <div class="field">
     <div class="label">Empresa</div>
-    <div class="value">${empresa || "—"}</div>
+    <div class="value">${e}</div>
   </div>
   
   <div class="field">
-    <div class="label">Problema / Caos que quiere resolver</div>
-    <div class="value">${problema || "—"}</div>
+    <div class="label">Servicio solicitado</div>
+    <div class="value">${r}</div>
   </div>
   
   <div class="field">
-    <div class="label">Rubro</div>
-    <div class="value">${rubro || "—"}</div>
-  </div>
-  
-  <div class="field">
-    <div class="label">Contacto (Email / Teléfono)</div>
-    <div class="value">${contacto}</div>
+    <div class="label">Mensaje</div>
+    <div class="value">${p}</div>
   </div>
   
   <p class="footer">Enviado desde el formulario de contacto de Fénix AutoDev.</p>

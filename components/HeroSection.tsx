@@ -54,7 +54,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 text-balance text-orange-500">
-            Sistemas de Alta Precisión para Empresas Exigentes
+            Software a Medida para PyMEs en La Plata y toda Argentina
           </h1>
 
           <p className="text-slate-200 text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed md:leading-loose">
