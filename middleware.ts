@@ -54,19 +54,7 @@ export function middleware(request: NextRequest) {
     );
   }
 
-  const response = NextResponse.next();
-
-  // Cabeceras de seguridad adicionales (refuerzan next.config)
-  response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("Referrer-Policy", "origin-when-cross-origin");
-
-  // Vercel: control de tráfico / caching (recomendadas)
-  if (isApi) {
-    response.headers.set("Cache-Control", "no-store, max-age=0");
-  }
-
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {
