@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  contactFormSchema,
+  sanitizeContactPayload,
+  escapeHtml,
+} from "@/lib/validations/contact";
 
 const TO_EMAIL = "fenixautodev@gmail.com";
 const FROM_EMAIL =
@@ -19,40 +24,27 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { nombre, empresa, problema, rubro, contacto } = body;
+    const parsed = contactFormSchema.safeParse(body);
 
-    if (!nombre || typeof nombre !== "string" || nombre.trim().length < 2) {
-      return NextResponse.json(
-        { error: "El nombre debe tener al menos 2 caracteres" },
-        { status: 400 }
-      );
-    }
-    if (!contacto || typeof contacto !== "string" || contacto.trim().length < 5) {
-      return NextResponse.json(
-        { error: "El contacto es obligatorio" },
-        { status: 400 }
-      );
-    }
-    if (!problema || typeof problema !== "string" || problema.trim().length < 10) {
-      return NextResponse.json(
-        { error: "Describí tu desafío técnico con al menos 10 caracteres" },
-        { status: 400 }
-      );
+    if (!parsed.success) {
+      const first = parsed.error.flatten().fieldErrors;
+      const msg =
+        first.nombre?.[0] ??
+        first.problema?.[0] ??
+        first.contacto?.[0] ??
+        "Datos del formulario inválidos.";
+      return NextResponse.json({ error: msg }, { status: 400 });
     }
 
-    const subject = `NUEVO LEAD: [${nombre.trim()}] - Fénix AutoDev`;
+    const data = sanitizeContactPayload(parsed.data);
+    const { nombre, empresa, problema, rubro, contacto } = data;
 
-    const esc = (s: string) =>
-      String(s ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    const n = esc(nombre.trim());
-    const e = esc((empresa || "").trim() || "—");
-    const p = esc((problema || "").trim());
-    const r = esc((rubro || "").trim() || "—");
-    const c = esc((contacto || "").trim());
+    const subject = `NUEVO LEAD: [${escapeHtml(nombre)}] - Fénix AutoDev`;
+    const n = escapeHtml(nombre);
+    const e = escapeHtml(empresa || "—");
+    const p = escapeHtml(problema);
+    const r = escapeHtml(rubro || "—");
+    const c = escapeHtml(contacto);
 
     const html = `
 <!DOCTYPE html>

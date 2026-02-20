@@ -14,6 +14,8 @@ interface FaqSectionProps {
 
 /**
  * Genera el JSON-LD para FAQPage (Schema.org).
+ * SEGURIDAD: Usar solo con datos estáticos (ej. FAQ_ITEMS). No inyectar contenido
+ * de usuario sin validar/sanitizar; este JSON se inserta vía dangerouslySetInnerHTML.
  */
 function getFaqJsonLd(items: readonly FaqItem[]) {
   return {
@@ -37,6 +39,7 @@ export function FaqSection({ items }: FaqSectionProps) {
 
   return (
     <>
+      {/* JSON-LD estático desde FAQ_ITEMS; no incluir datos de usuario sin validación */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -6,47 +6,19 @@ import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import {
+  contactFormSchema,
+  sanitizeContactPayload,
+  RUBRO_OPTIONS,
+} from "@/lib/validations/contact";
 
 const WHATSAPP_URL =
   "https://wa.me/5492216902614?text=Hola%20Fenix%20AutoDev,%20quisiera%20consultar%20por%20sus%20servicios.";
-
-const RUBRO_OPTIONS = [
-  "",
-  "Salud & Clínicas",
-  "Industria & PyMEs",
-  "Comercio & Retail",
-  "Servicios Profesionales",
-  "Logística & Distribución",
-  "Otro",
-];
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const INPUT_STYLE =
   "flex min-h-[44px] h-11 w-full rounded-md border border-white/10 bg-[#020817] px-3 py-3 sm:py-2 text-base sm:text-sm text-white placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-orange-500 focus-visible:shadow-[0_0_12px_rgba(249,115,22,0.25)] disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300";
-
-/** Regex para validar formato de email */
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/** Valida si el contacto parece email y tiene formato válido */
-function isValidContacto(value: string): boolean {
-  const trimmed = value.trim();
-  if (!trimmed) return false;
-  if (trimmed.includes("@")) {
-    return EMAIL_REGEX.test(trimmed);
-  }
-  return trimmed.length >= 8;
-}
-
-/** Valida que nombre tenga al menos 2 caracteres */
-function isValidNombre(value: string): boolean {
-  return value.trim().length >= 2;
-}
-
-/** Valida que el mensaje tenga contenido */
-function isValidProblema(value: string): boolean {
-  return value.trim().length >= 10;
-}
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -63,22 +35,23 @@ export function ContactForm() {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!isValidNombre(formData.nombre)) {
-      setErrorMessage("El nombre debe tener al menos 2 caracteres.");
-      setStatus("error");
-      return;
-    }
-    if (!isValidProblema(formData.problema)) {
-      setErrorMessage("Describí tu desafío técnico con al menos 10 caracteres.");
-      setStatus("error");
-      return;
-    }
-    if (!isValidContacto(formData.contacto)) {
-      setErrorMessage(
-        formData.contacto.includes("@")
-          ? "Ingresá un email válido (ej: nombre@empresa.com)."
-          : "Ingresá un email o WhatsApp válido para contacto."
-      );
+    const parsed = contactFormSchema.safeParse({
+      nombre: formData.nombre,
+      empresa: formData.empresa,
+      problema: formData.problema,
+      rubro: formData.rubro || "",
+      contacto: formData.contacto,
+    });
+
+    if (!parsed.success) {
+      const first = parsed.error.flatten().fieldErrors;
+      const msg =
+        first.nombre?.[0] ??
+        first.problema?.[0] ??
+        first.contacto?.[0] ??
+        first.rubro?.[0] ??
+        "Revisá los datos del formulario.";
+      setErrorMessage(msg);
       setStatus("error");
       return;
     }
@@ -88,14 +61,7 @@ export function ContactForm() {
     try {
       const apiUrl =
         process.env.NEXT_PUBLIC_CONTACT_API_URL || "/api/contact";
-
-      const payload = {
-        nombre: formData.nombre.trim(),
-        empresa: formData.empresa.trim(),
-        problema: formData.problema.trim(),
-        rubro: formData.rubro.trim(),
-        contacto: formData.contacto.trim(),
-      };
+      const payload = sanitizeContactPayload(parsed.data);
 
       const res = await fetch(apiUrl, {
         method: "POST",
